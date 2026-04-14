@@ -1,15 +1,24 @@
 package com.seaplusplus.backend;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
+import java.io.*;
+import java.util.*;
 
 @Service
 public class QuizService {
 
     private int coins;
+    private final List<Map<String, Object>> questions;
 
-    public QuizService(SaveService saveService) {
-        // Load coins from save file on startup
+    public QuizService(SaveService saveService) throws IOException {
         this.coins = (int) saveService.load().get("coins");
+
+        // Load questions from file so we can check answers
+        ObjectMapper mapper = new ObjectMapper();
+        InputStream is = getClass().getResourceAsStream("/questions.json");
+        questions = mapper.readValue(is, new TypeReference<List<Map<String, Object>>>() {});
     }
 
     public int getCoins() {
@@ -17,12 +26,12 @@ public class QuizService {
     }
 
     public boolean checkAnswer(int questionId, int selectedAnswer) {
-        switch (questionId) {
-            case 1: return selectedAnswer == 1;
-            case 2: return selectedAnswer == 2;
-            case 3: return selectedAnswer == 2;
-            default: return false;
-        }
+        // Find the question and compare the selected answer
+        return questions.stream()
+            .filter(q -> (int) q.get("id") == questionId)
+            .findFirst()
+            .map(q -> (int) q.get("correctAnswer") == selectedAnswer)
+            .orElse(false);
     }
 
     public void addCoins(int amount) {
