@@ -7,9 +7,13 @@ import java.util.*;
 public class QuizController {
 
     private final QuizService quizService;
+    private final ShopService shopService;
+    private final SaveService saveService;
 
-    public QuizController(QuizService quizService) {
+    public QuizController(QuizService quizService, ShopService shopService, SaveService saveService) {
         this.quizService = quizService;
+        this.shopService = shopService;
+        this.saveService = saveService;
     }
 
     @PostMapping("/api/quiz/answer")
@@ -21,6 +25,8 @@ public class QuizController {
 
         if (correct) {
             quizService.addCoins(10);
+            // Save after earning coins
+            saveService.save(quizService.getCoins(), shopService.getInventory());
         }
 
         return Map.of(

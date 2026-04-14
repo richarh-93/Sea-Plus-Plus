@@ -5,14 +5,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class QuizService {
 
-    private int coins = 0;
+    private int coins;
+
+    public QuizService(SaveService saveService) {
+        // Load coins from save file on startup
+        this.coins = (int) saveService.load().get("coins");
+    }
 
     public int getCoins() {
         return coins;
     }
 
     public boolean checkAnswer(int questionId, int selectedAnswer) {
-        // Match against our hardcoded correct answers
         switch (questionId) {
             case 1: return selectedAnswer == 1;
             case 2: return selectedAnswer == 2;
