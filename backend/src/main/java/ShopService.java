@@ -36,6 +36,12 @@ public class ShopService {
         if (fish == null) {
             return Map.of("success", false, "message", "Fish not found");
         }
+        // Step 2: Check if already owned
+        boolean alreadyOwned = inventory.stream()
+            .anyMatch(f -> (int) f.get("id") == fishId);
+        if (alreadyOwned) {
+            return Map.of("success", false, "message", "You already own this fish");
+}
 
         int price = (int) fish.get("price");
         if (quizService.getCoins() < price) {
