@@ -1,0 +1,132 @@
+[
+  {
+    "id": 1,
+    "question": "What is the correct way to declare a pointer in C++?",
+    "options": ["int ptr;", "int *ptr;", "ptr int;", "int &ptr;"],
+    "correctAnswer": 1,
+    "reward": 10
+  },
+  {
+    "id": 2,
+    "question": "Which keyword is used to allocate memory dynamically in C++?",
+    "options": ["malloc", "alloc", "new", "create"],
+    "correctAnswer": 2,
+    "reward": 10
+  },
+  {
+    "id": 3,
+    "question": "What does 'cout' belong to?",
+    "options": ["stdio.h", "stdlib.h", "iostream", "string.h"],
+    "correctAnswer": 2,
+    "reward": 10
+  },
+  {
+    "id": 4,
+    "question": "What is the default access modifier for members of a class in C++?",
+    "options": ["public", "private", "protected", "static"],
+    "correctAnswer": 1,
+    "reward": 10
+  },
+  {
+    "id": 5,
+    "question": "Which operator is used to access members of a class through a pointer?",
+    "options": [".", "::", "->", "&"],
+    "correctAnswer": 2,
+    "reward": 10
+  },
+  {
+    "id": 6,
+    "question": "What does the 'virtual' keyword do in C++?",
+    "options": [
+      "Makes a variable constant",
+      "Allows a function to be overridden in a derived class",
+      "Creates a static method",
+      "Allocates memory dynamically"
+    ],
+    "correctAnswer": 1,
+    "reward": 10
+  },
+  {
+    "id": 7,
+    "question": "What is the correct syntax for a for loop in C++?",
+    "options": [
+      "for (int i = 0; i < 10; i++)",
+      "for int i = 0; i < 10; i++",
+      "for (i = 0, i < 10, i++)",
+      "loop (int i = 0; i < 10; i++)"
+    ],
+    "correctAnswer": 0,
+    "reward": 10
+  },
+  {
+    "id": 8,
+    "question": "Which of the following is NOT a valid C++ data type?",
+    "options": ["float", "double", "decimal", "int"],
+    "correctAnswer": 2,
+    "reward": 10
+  },
+  {
+    "id": 9,
+    "question": "What does the '&' symbol mean when placed before a parameter in a function definition?",
+    "options": [
+      "Pointer to the parameter",
+      "Address of the parameter",
+      "Pass by reference",
+      "Bitwise AND"
+    ],
+    "correctAnswer": 2,
+    "reward": 10
+  },
+  {
+    "id": 10,
+    "question": "What is a destructor in C++?",
+    "options": [
+      "A function that creates objects",
+      "A function that is called when an object is destroyed",
+      "A function that deletes variables",
+      "A function that frees the stack"
+    ],
+    "correctAnswer": 1,
+    "reward": 10
+  },
+  {
+    "id": 11,
+    "question": "What does 'std' stand for in C++?",
+    "options": ["standard", "static", "string data", "structured"],
+    "correctAnswer": 0,
+    "reward": 10
+  },
+  {
+    "id": 12,
+    "question": "Which keyword is used to prevent a class from being inherited?",
+    "options": ["static", "const", "final", "sealed"],
+    "correctAnswer": 2,
+    "reward": 10
+  },
+  {
+    "id": 13,
+    "question": "What is the output of: cout << 5/2;",
+    "options": ["2.5", "2", "3", "Error"],
+    "correctAnswer": 1,
+    "reward": 10
+  },
+  {
+    "id": 14,
+    "question": "Which of these correctly declares a reference variable?",
+    "options": ["int &ref = x;", "int *ref = x;", "int ref = &x;", "ref int = x;"],
+    "correctAnswer": 0,
+    "reward": 10
+  },
+  {
+    "id": 15,
+    "question": "What is the purpose of the 'const' keyword in C++?",
+    "options": [
+      "Makes a variable changeable",
+      "Defines a constant that cannot be modified",
+      "Allocates memory",
+      "Declares a constructor"
+    ],
+    "correctAnswer": 1,
+    "reward": 10
+  }
+]
