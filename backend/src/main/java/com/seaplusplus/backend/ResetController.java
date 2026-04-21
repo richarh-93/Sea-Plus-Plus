@@ -16,22 +16,13 @@ public class ResetController {
         this.saveService = saveService;
     }
 
-    @PostMapping("/api/reset")
-    public Map<String, Object> resetGame() {
-        // Reset coins to 0
-        int currentCoins = quizService.getCoins();
-        quizService.addCoins(-currentCoins);
-
-        // Clear inventory
-        shopService.getInventory().clear();
-
-        // Save the reset state
-        saveService.save(0, new ArrayList<>());
-
-        return Map.of(
-            "success", true,
-            "message", "Game reset",
-            "coins", 0
-        );
-    }
+@PostMapping("/api/reset")
+public Map<String, Object> resetGame() {
+    System.out.println("⚠️  RESET ENDPOINT CALLED — IGNORED (temporarily disabled)");
+    return Map.of(
+        "success", true,
+        "message", "Reset disabled — progress preserved",
+        "coins", quizService.getCoins()
+    );
+}
 }
