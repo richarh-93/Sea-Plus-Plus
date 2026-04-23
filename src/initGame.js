@@ -6,7 +6,6 @@ import {
     submitAnswer,
     buyFish,
     getInventory,
-    resetGame,
     addCoins,
 } from "./api";
 
@@ -467,11 +466,6 @@ export default function initGame() {
 
             makeButton("startButton", k.width()/2, 580, async () => {
                 try {
-                    await resetGame();
-
-                    state.coins = 0;
-                    state.inventory = [];
-
                     const fishData = await getFishCatalog();
                     state.fishCatalog = fishData;
 
