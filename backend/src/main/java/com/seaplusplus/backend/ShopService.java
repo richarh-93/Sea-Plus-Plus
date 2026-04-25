@@ -1,6 +1,7 @@
 package com.seaplusplus.backend;
 
 import org.springframework.stereotype.Service;
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -21,48 +22,51 @@ public class ShopService {
         this.quizService = quizService;
         this.saveService = saveService;
 
-        // Load inventory from save file on startup
         Map<String, Object> data = saveService.load();
-        List<Map<String, Object>> saved = (List<Map<String, Object>>) data.get("inventory");
+        Object savedInv = data.get("inventory");
+        List<Map<String, Object>> saved = savedInv instanceof List
+            ? (List<Map<String, Object>>) savedInv
+            : new ArrayList<>();
         this.inventory = new ArrayList<>(saved);
     }
 
-    public Map<String, Object> buyFish(int fishId) {
-        Map<String, Object> fish = fishCatalog.stream()
-            .filter(f -> (int) f.get("id") == fishId)
-            .findFirst()
-            .orElse(null);
+    public List<Map<String, Object>> getCatalog() {
+        return fishCatalog;
+    }
 
-        if (fish == null) {
-            return Map.of("success", false, "message", "Fish not found");
-        }
-        // Step 2: Check if already owned
-        boolean alreadyOwned = inventory.stream()
-            .anyMatch(f -> (int) f.get("id") == fishId);
-        if (alreadyOwned) {
-            return Map.of("success", false, "message", "You already own this fish");
-}
+    public Optional<Map<String, Object>> findFish(int fishId) {
+        return fishCatalog.stream()
+            .filter(f -> ((Number) f.get("id")).intValue() == fishId)
+            .findFirst();
+    }
 
-        int price = (int) fish.get("price");
-        if (quizService.getCoins() < price) {
-            return Map.of("success", false, "message", "Not enough coins");
-        }
+    public boolean owns(int fishId) {
+        return inventory.stream()
+            .anyMatch(f -> ((Number) f.get("id")).intValue() == fishId);
+    }
+
+    public boolean canAfford(int price) {
+        return quizService.getCoins() >= price;
+    }
+
+    public void purchase(Map<String, Object> fish) throws IOException {
+        int price = ((Number) fish.get("price")).intValue();
+
+        int newCoins = quizService.getCoins() - price;
+        List<Map<String, Object>> newInventory = new ArrayList<>(inventory);
+        newInventory.add(fish);
+
+        saveService.save(newCoins, newInventory);
 
         quizService.addCoins(-price);
         inventory.add(fish);
-
-        // Save progress after every purchase
-        saveService.save(quizService.getCoins(), inventory);
-
-        return Map.of(
-            "success", true,
-            "message", "Purchased " + fish.get("name"),
-            "coins", quizService.getCoins(),
-            "inventory", inventory
-        );
     }
 
     public List<Map<String, Object>> getInventory() {
         return inventory;
+    }
+
+    public void resetInventory() {
+        inventory.clear();
     }
 }
