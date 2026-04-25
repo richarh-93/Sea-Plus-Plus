@@ -1,6 +1,9 @@
 package com.seaplusplus.backend;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -17,26 +20,53 @@ public class QuizController {
     }
 
     @PostMapping("/api/quiz/answer")
-    public Map<String, Object> submitAnswer(@RequestBody Map<String, Integer> body) {
-        int questionId = body.get("questionId");
-        int selectedAnswer = body.get("selectedAnswer");
+    public ResponseEntity<Map<String, Object>> submitAnswer(@RequestBody Map<String, Object> body) {
+        Integer questionId = readInt(body, "questionId");
+        Integer selectedAnswer = readInt(body, "selectedAnswer");
 
-        boolean correct = quizService.checkAnswer(questionId, selectedAnswer);
-
-        if (correct) {
-            quizService.addCoins(10);
-            // Save after earning coins
-            saveService.save(quizService.getCoins(), shopService.getInventory());
+        if (questionId == null || selectedAnswer == null) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Missing or invalid 'questionId' or 'selectedAnswer'"
+            ));
         }
 
-        return Map.of(
+        if (quizService.findQuestion(questionId).isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                "error", "Unknown questionId: " + questionId
+            ));
+        }
+
+        boolean correct = quizService.checkAnswer(questionId, selectedAnswer);
+        int reward = correct ? quizService.rewardFor(questionId) : 0;
+
+        if (correct) {
+            int newCoins = quizService.getCoins() + reward;
+            try {
+                saveService.save(newCoins, shopService.getInventory());
+            } catch (IOException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "error", "Failed to persist reward, no coins awarded: " + e.getMessage()
+                ));
+            }
+            quizService.addCoins(reward);
+        }
+
+        return ResponseEntity.ok(Map.of(
             "correct", correct,
+            "reward", reward,
             "coins", quizService.getCoins()
-        );
+        ));
     }
 
     @GetMapping("/api/coins")
-    public Map<String, Integer> getCoins() {
-        return Map.of("coins", quizService.getCoins());
+    public ResponseEntity<Map<String, Integer>> getCoins() {
+        return ResponseEntity.ok(Map.of("coins", quizService.getCoins()));
+    }
+
+    private static Integer readInt(Map<String, Object> body, String key) {
+        if (body == null) return null;
+        Object v = body.get(key);
+        if (v instanceof Number) return ((Number) v).intValue();
+        return null;
     }
 }
