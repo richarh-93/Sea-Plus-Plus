@@ -1,41 +1,40 @@
-# Prerequisites
-*.d
+# ─── Frontend (React + Vite) ───
+node_modules/
+.vite/
+dist/
+*.local
 
-# Compiled Object files
-*.slo
-*.lo
+# ─── Backend (Spring Boot + Maven) ───
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+*.class
+
+# ─── Game state (per-machine, not shared) ───
+save.json
+backend/save.json
+
+# ─── IDE / OS ───
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# ─── Logs ───
+*.log
+npm-debug.log*
+
+# ─── Legacy C++ artifacts (kept from old stack, harmless) ───
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
 *.so
 *.dylib
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
 *.a
 *.lib
-
-# Executables
 *.exe
 *.out
 *.app
-
-# debug information files
-*.dwo
+*.pdb
+*.gch
+*.pch
