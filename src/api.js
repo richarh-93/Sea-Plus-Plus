@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:8080";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8080";
 
 async function handleJson(res) {
     if (!res.ok) {
@@ -19,8 +19,8 @@ export async function getFishCatalog() {
 
 export async function getQuestions(category) {
     const url = category
-        ? `http://localhost:8080/api/questions?category=${category}`
-        : "http://localhost:8080/api/questions";
+        ? `${API_BASE}/api/questions?category=${category}`
+        : `${API_BASE}/api/questions`;
 
     const res = await fetch(url);
 
@@ -55,7 +55,7 @@ export async function getInventory() {
 }
 
 export async function resetGame() {
-    const res = await fetch("http://localhost:8080/api/reset", {
+    const res = await fetch(`${API_BASE}/api/reset`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
     });
