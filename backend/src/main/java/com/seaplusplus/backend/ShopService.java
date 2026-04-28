@@ -12,14 +12,14 @@ public class ShopService {
     private final List<Map<String, Object>> inventory;
 
     private final List<Map<String, Object>> fishCatalog = List.of(
-        Map.of("id", 1, "name", "Angelfish", "price", 10, "imageUrl", "angel.png"),
-        Map.of("id", 2, "name", "Clownfish", "price", 20, "imageUrl", "clown.png"),
-        Map.of("id", 3, "name", "Pigfish", "price", 30, "imageUrl", "pig.png"),
-        Map.of("id", 4, "name", "Anglerfish", "price", 40, "imageUrl", "angler.png"),
-        Map.of("id", 5, "name", "Swordfish", "price", 50, "imageUrl", "sword.png"),
-        Map.of("id", 6, "name", "Mola Mola", "price", 60, "imageUrl", "molamola.png"),
-        Map.of("id", 7, "name", "Spinner Shark", "price", 70, "imageUrl", "spinner.png"),
-        Map.of("id", 8, "name", "Boston Lobster", "price", 80, "imageUrl", "lobsterL.png"),
+        Map.of("id", 1, "name", "Angelfish", "price", 5, "imageUrl", "angel.png"),
+        Map.of("id", 2, "name", "Clownfish", "price", 10, "imageUrl", "clown.png"),
+        Map.of("id", 3, "name", "Pigfish", "price", 15, "imageUrl", "pig.png"),
+        Map.of("id", 4, "name", "Anglerfish", "price", 20, "imageUrl", "angler.png"),
+        Map.of("id", 5, "name", "Swordfish", "price", 30, "imageUrl", "sword.png"),
+        Map.of("id", 6, "name", "Mola Mola", "price", 40, "imageUrl", "molamola.png"),
+        Map.of("id", 7, "name", "Spinner Shark", "price", 50, "imageUrl", "spinner.png"),
+        Map.of("id", 8, "name", "Boston Lobster", "price", 70, "imageUrl", "lobsterL.png"),
         Map.of("id", 9, "name", "Densmoray Eel", "price", 100, "imageUrl", "eel.png")
     );
 
