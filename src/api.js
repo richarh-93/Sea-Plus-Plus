@@ -17,9 +17,18 @@ export async function getFishCatalog() {
     return handleJson(res);
 }
 
-export async function getQuestions() {
-    const res = await fetch(`${API_BASE}/api/questions`);
-    return handleJson(res);
+export async function getQuestions(category) {
+    const url = category
+        ? `http://localhost:8080/api/questions?category=${category}`
+        : "http://localhost:8080/api/questions";
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+        throw new Error("Failed to fetch questions");
+    }
+
+    return await res.json();
 }
 
 export async function submitAnswer(questionId, selectedAnswer) {

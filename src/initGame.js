@@ -18,8 +18,10 @@ export default function initGame() {
     const state = {
         coins: 0,
         questionIndex: 0,
+        altQuestionIndex: 0,
         fishCatalog: [],
         questions: [],
+        altQuestions: [],
         inventory: [],
         coinLabel: null,
         messageLabel: null,
@@ -401,7 +403,7 @@ export default function initGame() {
         function addQuestionItems() {
             if (state.questions.length === 0) {
                 k.add([
-                    k.text("No questions loaded", { size: 36 }),
+                    k.text("No C++ questions loaded", { size: 36 }),
                     k.pos(k.width() / 2, k.height() / 2),
                     k.anchor("center"),
                     k.color(0, 0, 0),
@@ -467,6 +469,75 @@ export default function initGame() {
             });
         }
 
+        function addAltQuestionItems() {
+            if (state.altQuestions.length === 0) {
+                k.add([
+                    k.text("No fish questions loaded", { size: 36 }),
+                    k.pos(k.width() / 2, k.height() / 2),
+                    k.anchor("center"),
+                    k.color(0, 0, 0),
+                ]);
+                return;
+            }
+
+            const q = state.altQuestions[state.altQuestionIndex];
+
+            const baseX = 220;
+            const baseY = 300;
+
+            k.add([
+                k.text(`${q.question}`, {
+                    size: 50,
+                    width: 1500,
+                }),
+                k.pos(baseX, baseY),
+                k.color(0, 0, 0),
+            ]);
+
+            q.options.forEach((option, optionIndex) => {
+                const btn = k.add([
+                    k.text(`${optionIndex + 1}. ${option}`, {
+                        size: 40,
+                        width: 1300,
+                    }),
+                    k.pos(baseX + 40, baseY + 120 + optionIndex * 80),
+                    k.area(),
+                    k.color(0, 0, 0),
+                ]);
+
+                btn.onHover(() => {
+                    k.setCursor("pointer");
+                });
+
+                btn.onHoverEnd(() => {
+                    k.setCursor("default");
+                });
+
+                btn.onClick(async () => {
+                    try {
+                        const result = await submitAnswer(q.id, optionIndex);
+
+                        state.coins = result.coins;
+
+                        if (result.correct) {
+                            state.altQuestionIndex++;
+
+                            if (state.altQuestionIndex >= state.altQuestions.length) {
+                                state.altQuestionIndex = 0;
+                            }
+
+                            k.go("altquestion");
+                        } else {
+                            setMessage("Wrong answer.", k.rgb(141, 5, 5));
+                        }
+                    } catch (err) {
+                        setMessage("Could not submit answer");
+                        console.error(err);
+                    }
+                });
+            });
+        }
+
         try {
             const coinsData = await getCoins();
             state.coins = coinsData.coins;
@@ -482,9 +553,8 @@ export default function initGame() {
         }
 
         try {
-            const questionsData = await getQuestions();
-            state.questions = questionsData;
-            console.log("Loaded questions:", questionsData);
+            state.questions = await getQuestions("cpp");
+            state.altQuestions = await getQuestions("fish_trivia");
         } catch (err) {
             console.error("Questions failed:", err);
         }
@@ -650,16 +720,17 @@ export default function initGame() {
 
             addQuestionItems();
 
-            makeButton("sanddollar", k.width() - 200, 191, async () => {
-                try {
-                    const result = await addCoins(10);
-                    state.coins = result.coins;
-                    setMessage("+10 coins (cheat button pressed)");
-                } catch (err) {
-                    setMessage("Could not add coins", k.rgb(255, 0, 0));
-                    console.error(err);
-                }
-            }, 4).use(k.color(255, 0, 0));
+            //cheat button:
+            // makeButton("sanddollar", k.width() - 200, 191, async () => {
+            //     try {
+            //         const result = await addCoins(10);
+            //         state.coins = result.coins;
+            //         setMessage("+10 coins (cheat button pressed)");
+            //     } catch (err) {
+            //         setMessage("Could not add coins", k.rgb(255, 0, 0));
+            //         console.error(err);
+            //     }
+            // }, 4).use(k.color(255, 0, 0));
 
             makeButton("changequestiontype", k.width()/2, 191, () => {
                 k.go("altquestion"); //go to alternate questions page
@@ -675,18 +746,19 @@ export default function initGame() {
                 k.go("main");
             });
 
-            //addAltQuestionItems();
+            addAltQuestionItems();
 
-            makeButton("sanddollar", k.width() - 200, 191, async () => {
-                try {
-                    const result = await addCoins(10);
-                    state.coins = result.coins;
-                    setMessage("+10 coins (cheat button pressed)");
-                } catch (err) {
-                    setMessage("Could not add coins", k.rgb(255, 0, 0));
-                    console.error(err);
-                }
-            }, 4).use(k.color(255, 0, 0));
+            //cheat button:
+            // makeButton("sanddollar", k.width() - 200, 191, async () => {
+            //     try {
+            //         const result = await addCoins(10);
+            //         state.coins = result.coins;
+            //         setMessage("+10 coins (cheat button pressed)");
+            //     } catch (err) {
+            //         setMessage("Could not add coins", k.rgb(255, 0, 0));
+            //         console.error(err);
+            //     }
+            // }, 4).use(k.color(255, 0, 0));
 
             makeButton("changequestiontype", k.width()/2, 191, () => {
                 k.go("question"); //go to default questions page
