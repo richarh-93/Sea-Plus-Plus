@@ -1,5 +1,6 @@
 import initKaplay from "./kaplayCtx";
 import { loadFishSprites } from "./loadFishSprites";
+import { creditsText } from "./credits";
 import {
     getCoins,
     getFishCatalog,
@@ -530,6 +531,36 @@ export default function initGame() {
 
             makeButton("backButton", 200, 191, () => {
                 k.go("main");
+            });
+
+            let startY = 180;
+
+            creditsText.forEach((line, i) => {
+                const txt = k.add([
+                    k.text(line.text, { size: line.size || 40 }),
+                    k.pos(k.width() / 2, startY + i * 80),
+                    k.anchor("center"),
+                    k.color(0, 0, 0),
+                ]);
+
+                //make links clickable
+                if (line.link) {
+                    txt.use(k.area());
+
+                    txt.onHover(() => {
+                        k.setCursor("pointer");
+                        txt.color = k.rgb(14, 94, 179);
+                    });
+
+                    txt.onHoverEnd(() => {
+                        k.setCursor("default");
+                        txt.color = k.rgb(0, 0, 0);
+                    });
+
+                    txt.onClick(() => {
+                        window.open(line.link, "_blank");
+                    });
+                }
             });
         });
 
