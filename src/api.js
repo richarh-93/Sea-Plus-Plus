@@ -28,7 +28,9 @@ export async function getQuestions(category) {
         throw new Error("Failed to fetch questions");
     }
 
-    return await res.json();
+    const questions = await res.json();
+
+    return shuffleArray(questions);
 }
 
 export async function submitAnswer(questionId, selectedAnswer) {
@@ -69,4 +71,15 @@ export async function addCoins(amount) {
         body: JSON.stringify({ amount }),
     });
     return handleJson(res);
+}
+
+function shuffleArray(array) {
+    const copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+
+    return copy;
 }

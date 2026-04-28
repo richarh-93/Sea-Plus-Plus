@@ -582,7 +582,8 @@ export default function initGame() {
                     state.questionIndex = 0;
 
                     state.fishCatalog = await getFishCatalog();
-                    state.questions = await getQuestions();
+                    state.questions = await getQuestions("cpp");
+                    state.altQuestions = await getQuestions("fish_trivia");
 
                     k.go("main");
                 } catch (err) {
@@ -596,7 +597,8 @@ export default function initGame() {
                     state.coins = (await getCoins()).coins;
                     state.inventory = await getInventory();
                     state.fishCatalog = await getFishCatalog();
-                    state.questions = await getQuestions();
+                    state.questions = await getQuestions("cpp");
+                    state.altQuestions = await getQuestions("fish_trivia");
 
                     k.go("main");
                 } catch (err) {
