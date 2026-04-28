@@ -52,7 +52,6 @@ export default function initGame() {
 
     k.onLoad(async () => {
         function getFishSpriteName(fishName) {
-            //if (fishName === "Testfish") return "lobsterR";
             
             if (fishName === "Angelfish") return "angel";
             if (fishName === "Clownfish") return "clown";
@@ -283,7 +282,7 @@ export default function initGame() {
                 let x = startX + col * spacingX;
                 let y = startY + row * spacingY;
 
-                // Center eel
+                //center eel
                 if (fish.name === "Densmoray Eel") {
                     x = k.width() / 2 + 200;
                     y = k.height() / 2 + 60;
@@ -339,21 +338,21 @@ export default function initGame() {
                 if (!alreadyOwned) {
                     const priceLabel = k.add([
                         k.text(`${fish.price}`, { size: 50 }),
-                        k.pos(priceX, priceY), // ✅ FIXED
+                        k.pos(priceX, priceY),
                         k.anchor("right"),
                         k.color(0, 0, 0),
                     ]);
 
                     const priceIcon = k.add([
                         k.sprite("sanddollar"),
-                        k.pos(priceX + 10, priceY), // ✅ FIXED
+                        k.pos(priceX + 10, priceY),
                         k.anchor("left"),
                         k.scale(2),
                     ]);
 
                     const cart = k.add([
                         k.sprite("cart"),
-                        k.pos(cartX, cartY), // ✅ FIXED
+                        k.pos(cartX, cartY),
                         k.anchor("center"),
                         k.area(),
                         k.scale(7),
@@ -391,8 +390,13 @@ export default function initGame() {
                                     priceLabel.color = k.rgb(0, 0, 0);
                                 });
                             }
-                        } catch (err) {
-                            setMessage("Could not reach backend", k.rgb(255, 0, 0));
+                        }catch (err) {
+                            priceLabel.color = k.rgb(255, 0, 0);
+
+                            k.wait(.5, () => {
+                                priceLabel.color = k.rgb(0, 0, 0);
+                            });
+
                             console.error(err);
                         }
                     });
@@ -569,7 +573,6 @@ export default function initGame() {
         k.scene("start", () => {
             addFullBackground("startBg");
 
-            // NEW GAME button
             makeButton("new", k.width() / 2, 520, async () => {
                 try {
                     await resetGame();
@@ -588,7 +591,6 @@ export default function initGame() {
                 }
             },7);
 
-            // LOAD GAME button
             makeButton("load", k.width() / 2, 740, async () => {
                 try {
                     state.coins = (await getCoins()).coins;
@@ -615,7 +617,7 @@ export default function initGame() {
                 k.go("main");
             });
 
-            let startY = 180;
+            let startY = 160;
 
             creditsText.forEach((line, i) => {
                 const txt = k.add([
@@ -631,7 +633,7 @@ export default function initGame() {
 
                     txt.onHover(() => {
                         k.setCursor("pointer");
-                        txt.color = k.rgb(14, 94, 179);
+                        txt.color = k.rgb(37, 150, 190);
                     });
 
                     txt.onHoverEnd(() => {

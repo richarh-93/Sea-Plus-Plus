@@ -1,9 +1,17 @@
 export const creditsText = [
-    { text: "Sea++", size: 80 },
+    { text: "Sea++", size: 70 },
 
     { text: "Created by:", size: 50 },
-    { text: "Rebecca Brautigam - Interface Lead, Project Lead", size: 40 },
-    { text: "Richard (Yu-Yuan) Huang - Technical Lead, Specification Lead", size: 40 },
+    { 
+        text: "Rebecca Brautigam - Interface Lead, Project Lead", 
+        size: 40,
+        link: "https://www.linkedin.com/in/rebecca-brautigam/"
+    },
+    { 
+        text: "Richard (Yu-Yuan) Huang - Technical Lead, Specification Lead", 
+        size: 40,
+        link: "https://www.linkedin.com/in/richard-huang-/"
+    },
     { text: "Vincent Zhang - Mentor", size: 40 },
 
     { text: " ", size: 10 },
