@@ -71,6 +71,22 @@ public class QuizService {
         return questions;
     }
 
+    public List<Map<String, Object>> getQuestionsByCategory(String category) {
+        return questions.stream()
+                .filter(q -> category.equals(q.get("category")))
+                .toList();
+    }
+
+    public Set<String> getCategories() {
+        Set<String> result = new LinkedHashSet<>();
+        for (Map<String, Object> q : questions) {
+            if (q.get("category") instanceof String s) {
+                result.add(s);
+            }
+        }
+        return result;
+    }
+
     public Optional<Map<String, Object>> findQuestion(int questionId) {
         return questions.stream()
                 .filter(q -> ((Number) q.get("id")).intValue() == questionId)

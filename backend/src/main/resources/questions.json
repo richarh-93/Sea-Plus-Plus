@@ -5,7 +5,8 @@
     "options": ["int ptr;", "int *ptr;", "ptr int;", "int &ptr;"],
     "correctAnswer": 1,
     "difficulty": "easy",
-    "category": "Pointers"
+    "category": "cpp",
+    "topic": "Pointers"
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "options": ["malloc", "alloc", "new", "create"],
     "correctAnswer": 2,
     "difficulty": "easy",
-    "category": "Memory"
+    "category": "cpp",
+    "topic": "Memory"
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "options": ["stdio.h", "stdlib.h", "iostream", "string.h"],
     "correctAnswer": 2,
     "difficulty": "easy",
-    "category": "I/O"
+    "category": "cpp",
+    "topic": "I/O"
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "options": ["public", "private", "protected", "static"],
     "correctAnswer": 1,
     "difficulty": "medium",
-    "category": "Classes"
+    "category": "cpp",
+    "topic": "Classes"
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "options": [".", "::", "->", "&"],
     "correctAnswer": 2,
     "difficulty": "easy",
-    "category": "Pointers"
+    "category": "cpp",
+    "topic": "Pointers"
   },
   {
     "id": 6,
@@ -50,7 +55,8 @@
     ],
     "correctAnswer": 1,
     "difficulty": "medium",
-    "category": "OOP"
+    "category": "cpp",
+    "topic": "OOP"
   },
   {
     "id": 7,
@@ -63,7 +69,8 @@
     ],
     "correctAnswer": 0,
     "difficulty": "easy",
-    "category": "Control Flow"
+    "category": "cpp",
+    "topic": "Control Flow"
   },
   {
     "id": 8,
@@ -71,7 +78,8 @@
     "options": ["float", "double", "decimal", "int"],
     "correctAnswer": 2,
     "difficulty": "easy",
-    "category": "Data Types"
+    "category": "cpp",
+    "topic": "Data Types"
   },
   {
     "id": 9,
@@ -84,7 +92,8 @@
     ],
     "correctAnswer": 2,
     "difficulty": "medium",
-    "category": "References"
+    "category": "cpp",
+    "topic": "References"
   },
   {
     "id": 10,
@@ -97,7 +106,8 @@
     ],
     "correctAnswer": 1,
     "difficulty": "easy",
-    "category": "OOP"
+    "category": "cpp",
+    "topic": "OOP"
   },
   {
     "id": 11,
@@ -105,7 +115,8 @@
     "options": ["standard", "static", "string data", "structured"],
     "correctAnswer": 0,
     "difficulty": "easy",
-    "category": "Basics"
+    "category": "cpp",
+    "topic": "Basics"
   },
   {
     "id": 12,
@@ -113,7 +124,8 @@
     "options": ["static", "const", "final", "sealed"],
     "correctAnswer": 2,
     "difficulty": "medium",
-    "category": "OOP"
+    "category": "cpp",
+    "topic": "OOP"
   },
   {
     "id": 13,
@@ -121,7 +133,8 @@
     "options": ["2.5", "2", "3", "Error"],
     "correctAnswer": 1,
     "difficulty": "easy",
-    "category": "Operators"
+    "category": "cpp",
+    "topic": "Operators"
   },
   {
     "id": 14,
@@ -129,7 +142,8 @@
     "options": ["int &ref = x;", "int *ref = x;", "int ref = &x;", "ref int = x;"],
     "correctAnswer": 0,
     "difficulty": "easy",
-    "category": "References"
+    "category": "cpp",
+    "topic": "References"
   },
   {
     "id": 15,
@@ -142,7 +156,8 @@
     ],
     "correctAnswer": 1,
     "difficulty": "easy",
-    "category": "Basics"
+    "category": "cpp",
+    "topic": "Basics"
   },
   {
     "id": 16,
@@ -150,7 +165,8 @@
     "options": ["void", "int", "char", "double"],
     "correctAnswer": 1,
     "difficulty": "easy",
-    "category": "Functions"
+    "category": "cpp",
+    "topic": "Functions"
   },
   {
     "id": 17,
@@ -158,7 +174,8 @@
     "options": ["#", "//", "/*", "--"],
     "correctAnswer": 1,
     "difficulty": "easy",
-    "category": "Syntax"
+    "category": "cpp",
+    "topic": "Syntax"
   },
   {
     "id": 18,
@@ -166,7 +183,8 @@
     "options": ["<cstring>", "<string.h>", "<string>", "<text>"],
     "correctAnswer": 2,
     "difficulty": "easy",
-    "category": "Strings"
+    "category": "cpp",
+    "topic": "Strings"
   },
   {
     "id": 19,
@@ -174,7 +192,8 @@
     "options": ["cin", "cout", "cerr", "scan"],
     "correctAnswer": 0,
     "difficulty": "easy",
-    "category": "I/O"
+    "category": "cpp",
+    "topic": "I/O"
   },
   {
     "id": 20,
@@ -182,7 +201,8 @@
     "options": ["0", "null", "An indeterminate value", "-1"],
     "correctAnswer": 2,
     "difficulty": "medium",
-    "category": "Data Types"
+    "category": "cpp",
+    "topic": "Data Types"
   },
   {
     "id": 21,
@@ -190,7 +210,8 @@
     "options": ["free", "release", "delete", "remove"],
     "correctAnswer": 2,
     "difficulty": "medium",
-    "category": "Memory"
+    "category": "cpp",
+    "topic": "Memory"
   },
   {
     "id": 22,
@@ -198,7 +219,8 @@
     "options": ["package", "namespace", "module", "scope"],
     "correctAnswer": 1,
     "difficulty": "medium",
-    "category": "Basics"
+    "category": "cpp",
+    "topic": "Basics"
   },
   {
     "id": 23,
@@ -206,7 +228,8 @@
     "options": ["NULL", "0", "nullptr", "void"],
     "correctAnswer": 2,
     "difficulty": "medium",
-    "category": "Pointers"
+    "category": "cpp",
+    "topic": "Pointers"
   },
   {
     "id": 24,
@@ -219,7 +242,8 @@
     ],
     "correctAnswer": 1,
     "difficulty": "medium",
-    "category": "Operators"
+    "category": "cpp",
+    "topic": "Operators"
   },
   {
     "id": 25,
@@ -227,7 +251,8 @@
     "options": ["exit", "continue", "return", "break"],
     "correctAnswer": 3,
     "difficulty": "easy",
-    "category": "Control Flow"
+    "category": "cpp",
+    "topic": "Control Flow"
   },
   {
     "id": 26,
@@ -235,7 +260,8 @@
     "options": ["extern", "friend", "public", "inline"],
     "correctAnswer": 1,
     "difficulty": "medium",
-    "category": "Classes"
+    "category": "cpp",
+    "topic": "Classes"
   },
   {
     "id": 27,
@@ -248,7 +274,8 @@
     ],
     "correctAnswer": 0,
     "difficulty": "medium",
-    "category": "Classes"
+    "category": "cpp",
+    "topic": "Classes"
   },
   {
     "id": 28,
@@ -261,7 +288,8 @@
     ],
     "correctAnswer": 1,
     "difficulty": "medium",
-    "category": "Classes"
+    "category": "cpp",
+    "topic": "Classes"
   },
   {
     "id": 29,
@@ -269,7 +297,8 @@
     "options": ["if-else", "switch", "while", "do-while"],
     "correctAnswer": 1,
     "difficulty": "easy",
-    "category": "Control Flow"
+    "category": "cpp",
+    "topic": "Control Flow"
   },
   {
     "id": 30,
@@ -277,7 +306,8 @@
     "options": ["append()", "add()", "push_back()", "insert_end()"],
     "correctAnswer": 2,
     "difficulty": "medium",
-    "category": "STL"
+    "category": "cpp",
+    "topic": "STL"
   },
   {
     "id": 31,
@@ -290,7 +320,8 @@
     ],
     "correctAnswer": 1,
     "difficulty": "hard",
-    "category": "OOP"
+    "category": "cpp",
+    "topic": "OOP"
   },
   {
     "id": 32,
@@ -303,7 +334,8 @@
     ],
     "correctAnswer": 1,
     "difficulty": "hard",
-    "category": "Memory"
+    "category": "cpp",
+    "topic": "Memory"
   },
   {
     "id": 33,
@@ -316,7 +348,8 @@
     ],
     "correctAnswer": 1,
     "difficulty": "hard",
-    "category": "OOP"
+    "category": "cpp",
+    "topic": "OOP"
   },
   {
     "id": 34,
@@ -324,7 +357,8 @@
     "options": ["std::shared_ptr", "std::weak_ptr", "std::unique_ptr", "std::auto_ptr"],
     "correctAnswer": 2,
     "difficulty": "hard",
-    "category": "Memory"
+    "category": "cpp",
+    "topic": "Memory"
   },
   {
     "id": 35,
@@ -337,7 +371,8 @@
     ],
     "correctAnswer": 0,
     "difficulty": "hard",
-    "category": "Templates"
+    "category": "cpp",
+    "topic": "Templates"
   },
   {
     "id": 36,
@@ -350,7 +385,8 @@
     ],
     "correctAnswer": 1,
     "difficulty": "hard",
-    "category": "Functions"
+    "category": "cpp",
+    "topic": "Functions"
   },
   {
     "id": 37,
@@ -358,7 +394,8 @@
     "options": ["reinterpret_cast", "const_cast", "static_cast", "dynamic_cast"],
     "correctAnswer": 2,
     "difficulty": "hard",
-    "category": "Operators"
+    "category": "cpp",
+    "topic": "Operators"
   },
   {
     "id": 38,
@@ -371,7 +408,8 @@
     ],
     "correctAnswer": 0,
     "difficulty": "medium",
-    "category": "Control Flow"
+    "category": "cpp",
+    "topic": "Control Flow"
   },
   {
     "id": 39,
@@ -379,7 +417,8 @@
     "options": ["1", "2", "3", "Undefined"],
     "correctAnswer": 1,
     "difficulty": "medium",
-    "category": "Strings"
+    "category": "cpp",
+    "topic": "Strings"
   },
   {
     "id": 40,
@@ -392,6 +431,97 @@
     ],
     "correctAnswer": 2,
     "difficulty": "hard",
-    "category": "OOP"
+    "category": "cpp",
+    "topic": "OOP"
+  },
+  {
+    "id": 41,
+    "question": "How many hearts does an octopus have?",
+    "options": ["1", "2", "3", "4"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 42,
+    "question": "Which of these is the largest fish in the ocean?",
+    "options": ["Great White Shark", "Whale Shark", "Mola Mola", "Blue Marlin"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Fish Facts"
+  },
+  {
+    "id": 43,
+    "question": "How does a pufferfish primarily defend itself?",
+    "options": ["Releasing ink", "Inflating its body", "Producing electricity", "Camouflage only"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Defense Mechanisms"
+  },
+  {
+    "id": 44,
+    "question": "Which sense do sharks use to detect the electrical fields of nearby prey?",
+    "options": ["Echolocation", "Electroreception", "Chemoreception", "Thermoception"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 45,
+    "question": "The Mariana snailfish, the deepest-living fish ever observed, lives at roughly what depth?",
+    "options": ["2,000 m", "5,000 m", "8,000 m", "11,000 m"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "fish_trivia",
+    "topic": "Deep Sea"
+  },
+  {
+    "id": 46,
+    "question": "Which of these creatures is NOT actually a fish?",
+    "options": ["Seahorse", "Jellyfish", "Eel", "Ray"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Classification"
+  },
+  {
+    "id": 47,
+    "question": "What is the primary diet of a Mola Mola (ocean sunfish)?",
+    "options": ["Krill", "Jellyfish", "Small sharks", "Seaweed"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 48,
+    "question": "How do anglerfish attract their prey in the deep sea?",
+    "options": ["Loud sonar pulses", "A bioluminescent lure", "Releasing scent trails", "Mimicking coral"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Deep Sea"
+  },
+  {
+    "id": 49,
+    "question": "Approximately how long can a Boston (American) lobster live in the wild?",
+    "options": ["5 years", "20 years", "50 years", "100+ years"],
+    "correctAnswer": 3,
+    "difficulty": "hard",
+    "category": "fish_trivia",
+    "topic": "Crustaceans"
+  },
+  {
+    "id": 50,
+    "question": "Which group of fish includes sharks, rays, and skates?",
+    "options": ["Bony fish", "Cartilaginous fish", "Lobe-finned fish", "Jawless fish"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Classification"
   }
 ]
