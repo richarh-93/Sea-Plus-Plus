@@ -28,7 +28,8 @@ export default function initGame() {
     // backgrounds
     k.loadSprite("background", "/background.png");
     k.loadSprite("startBg", "/startmenu/nobuttons.png");
-    k.loadSprite("shopBg", "/shopmenu/justanks.png");
+    k.loadSprite("shopBg", "/shopmenu/hybridtanks.png");
+    k.loadSprite("eelShopBg", "/shopmenu/eelpage.png");
     k.loadSprite("questionBg", "/questionmenu/questionbackground.png");
 
     // buttons
@@ -64,7 +65,7 @@ export default function initGame() {
             return "angel";
         }
 
-        const fishSpeeds = {
+        const fishSpeeds = { //120 if not declared
             "Angelfish": 90,
             "Clownfish": 110,
             "Pigfish": 80,
@@ -80,9 +81,7 @@ export default function initGame() {
             //1136 total
             // 284, 568, 852 (1/4 2/4 3/4)
             // random if not declared
-            //"Angelfish": 90,
             "Clownfish": 200,
-            //"Pigfish": 80,
             "Anglerfish": 950,
             "Swordfish": 500,
             "Mola Mola": 75,
@@ -93,16 +92,21 @@ export default function initGame() {
 
         const fishSize = {
             //6 on default
-            "Angelfish": 6,
             "Clownfish": 5,
             "Pigfish": 7,
-            "Anglerfish": 6,
             "Swordfish": 7,
             "Mola Mola": 8,
             "Spinner Shark": 8,
-            "Boston Lobster": 6,
-            "Densmoray Eel": 8,
+            "Densmoray Eel": 7,
         };
+
+        const shopFishSize = { //to change the size of the fish in the shop
+            //default 4
+            "Mola Mola": 5, 
+            "Swordfish": 3.5,
+            "Densmoray Eel": 6,
+            "Spinner Shark": 4.3,
+        }
 
         function addFullBackground(name) {
             k.add([
@@ -266,7 +270,7 @@ export default function initGame() {
             }
         }
 
-        function addShopItems(items, startX = 550, startY = 550) {
+        function addShopItems(items, startX = 550, startY = 560) {
             const spacingX = 408;
             const spacingY = 308;
 
@@ -277,11 +281,22 @@ export default function initGame() {
                 let x = startX + col * spacingX;
                 let y = startY + row * spacingY;
 
-                // Put the 9th fish / eel in the center of shop page 2
+                // Center eel
                 if (fish.name === "Densmoray Eel") {
                     x = k.width() / 2 + 200;
                     y = k.height() / 2 + 60;
                 }
+
+                const isEel = fish.name === "Densmoray Eel";
+
+                const fishCenterX = x - 200;
+                const fishCenterY = y - 30;
+
+                const priceX = isEel ? fishCenterX +12 : x+2;
+                const priceY = isEel ? fishCenterY + 120 : y - 90;
+
+                const cartX = isEel ? fishCenterX : x;
+                const cartY = isEel ? fishCenterY + 200 : y;
 
                 const alreadyOwned = state.inventory.some(f => f.name === fish.name);
 
@@ -289,13 +304,12 @@ export default function initGame() {
                     k.sprite(getFishSpriteName(fish.name)),
                     k.pos(x - 200, y - 30),
                     k.anchor("center"),
-                    k.scale(4),
+                    k.scale(shopFishSize[fish.name] || 4),
                     k.area(),
                 ]);
 
                 fishSprite.frame = 0;
 
-                // Black out fish if not owned yet
                 if (!alreadyOwned) {
                     fishSprite.use(k.color(0, 0, 0));
                 }
@@ -311,7 +325,6 @@ export default function initGame() {
                     fishSprite.frame = 0;
                 });
 
-                // Only show name after bought
                 if (alreadyOwned) {
                     k.add([
                         k.text(fish.name, { size: 50 }),
@@ -324,24 +337,24 @@ export default function initGame() {
                 if (!alreadyOwned) {
                     const priceLabel = k.add([
                         k.text(`${fish.price}`, { size: 50 }),
-                        k.pos(x, y - 90),
+                        k.pos(priceX, priceY), // ✅ FIXED
                         k.anchor("right"),
                         k.color(0, 0, 0),
                     ]);
 
                     const priceIcon = k.add([
                         k.sprite("sanddollar"),
-                        k.pos(x + 10, y - 90),
+                        k.pos(priceX + 10, priceY), // ✅ FIXED
                         k.anchor("left"),
                         k.scale(2),
                     ]);
 
                     const cart = k.add([
                         k.sprite("cart"),
-                        k.pos(x, y),
+                        k.pos(cartX, cartY), // ✅ FIXED
                         k.anchor("center"),
                         k.area(),
-                        k.scale(8),
+                        k.scale(7),
                     ]);
 
                     cart.onHover(() => {
@@ -364,7 +377,6 @@ export default function initGame() {
                                 priceLabel.destroy();
                                 priceIcon.destroy();
 
-                                // Reload shop so fish becomes normal and name appears
                                 if (fish.name === "Densmoray Eel") {
                                     k.go("shop2");
                                 } else {
@@ -595,7 +607,7 @@ export default function initGame() {
         });
 
         k.scene("shop2", () => {
-            addFullBackground("shopBg");
+            addFullBackground("eelShopBg");
             addHUD();
 
             makeButton("backButton", 200, 191, () => {
