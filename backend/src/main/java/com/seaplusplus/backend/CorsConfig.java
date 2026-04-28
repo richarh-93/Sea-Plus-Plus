@@ -1,5 +1,6 @@
 package com.seaplusplus.backend;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
@@ -7,11 +8,14 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
+    @Value("${app.cors.allowed-origins}")
+    private String[] allowedOrigins;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:3000", "http://localhost:5173")
-                .allowedMethods("GET", "POST")
+                .allowedOrigins(allowedOrigins)
+                .allowedMethods("GET", "POST", "OPTIONS")
                 .allowedHeaders("*");
     }
 }
