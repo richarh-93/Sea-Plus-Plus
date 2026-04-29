@@ -434,9 +434,16 @@ export default function initGame() {
             ]);
 
             k.add([
-                k.text(`Worth ${q.reward} sand dollars`, { size: 30 }),
-                k.pos(baseX, baseY - 60),
+                k.text(`Worth ${q.reward}`, { size: 30 }),
+                k.pos(k.width() / 2 - 5, baseY + 460),
+                k.anchor("right"),
                 k.color(0, 0, 0),
+            ]);
+            k.add([
+                k.sprite("sanddollar"),
+                k.pos(k.width() / 2 + 5, baseY + 460),
+                k.anchor("left"),
+                k.scale(2),
             ]);
 
             q.options.forEach((option, optionIndex) => {
@@ -509,9 +516,16 @@ export default function initGame() {
             ]);
 
             k.add([
-                k.text(`Worth ${q.reward} sand dollars`, { size: 30 }),
-                k.pos(baseX, baseY - 60),
+                k.text(`Worth ${q.reward}`, { size: 30 }),
+                k.pos(k.width() / 2 - 5, baseY + 460),
+                k.anchor("right"),
                 k.color(0, 0, 0),
+            ]);
+            k.add([
+                k.sprite("sanddollar"),
+                k.pos(k.width() / 2 + 5, baseY + 460),
+                k.anchor("left"),
+                k.scale(2),
             ]);
 
             q.options.forEach((option, optionIndex) => {
