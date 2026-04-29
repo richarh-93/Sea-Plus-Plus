@@ -33,6 +33,8 @@ export default function initGame() {
     k.loadSprite("shopBg", "/shopmenu/hybridtanks.png");
     k.loadSprite("eelShopBg", "/shopmenu/eelpage.png");
     k.loadSprite("questionBg", "/questionmenu/questionbackground.png");
+    k.loadSprite("cppBg", "/questionmenu/cppmenu.png");
+    k.loadSprite("fishBg", "/questionmenu/fishmenu.png");
 
     // buttons
     k.loadSprite("new", "/startmenu/new.png");
@@ -782,7 +784,7 @@ export default function initGame() {
         // });
 
         k.scene("question", () => {
-            addFullBackground("questionBg");
+            addFullBackground("cppBg");
             addHUD();
 
             makeButton("backButton", 200, 191, () => {
@@ -810,7 +812,7 @@ export default function initGame() {
         });
 
         k.scene("altquestion", () => {
-            addFullBackground("questionBg");
+            addFullBackground("fishBg");
             addHUD();
 
             makeButton("backButton", 200, 191, () => {
