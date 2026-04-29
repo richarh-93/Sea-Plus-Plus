@@ -523,5 +523,580 @@
     "difficulty": "medium",
     "category": "fish_trivia",
     "topic": "Classification"
+  },
+  {
+    "id": 51,
+    "question": "Which file extensions are commonly used for C++ source files?",
+    "options": [".c only", ".cpp only", ".cc only", "Both .cpp and .cc are common"],
+    "correctAnswer": 3,
+    "difficulty": "easy",
+    "category": "cpp",
+    "topic": "Basics"
+  },
+  {
+    "id": 52,
+    "question": "What does the 'auto' keyword tell the compiler to do?",
+    "options": [
+      "Allocate the variable on the heap",
+      "Deduce the variable's type from its initializer",
+      "Make the variable global",
+      "Disable optimizations"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "cpp",
+    "topic": "Basics"
+  },
+  {
+    "id": 53,
+    "question": "Which standard library container provides a dynamic array in C++?",
+    "options": ["std::array", "std::vector", "std::list", "std::deque"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "cpp",
+    "topic": "STL"
+  },
+  {
+    "id": 54,
+    "question": "What does the operator '==' do in C++?",
+    "options": ["Assigns a value", "Compares two values for equality", "Bitwise XOR", "Logical negation"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "cpp",
+    "topic": "Operators"
+  },
+  {
+    "id": 55,
+    "question": "Which line correctly declares a class Dog inheriting publicly from Animal?",
+    "options": [
+      "class Dog extends Animal {};",
+      "class Dog : public Animal {};",
+      "class Dog inherits Animal {};",
+      "class Dog implements Animal {};"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "cpp",
+    "topic": "Inheritance"
+  },
+  {
+    "id": 56,
+    "question": "What does std::endl do when written to an output stream?",
+    "options": [
+      "Ends the program",
+      "Writes a newline and flushes the stream",
+      "Closes the underlying file",
+      "Returns from the current function"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "cpp",
+    "topic": "I/O"
+  },
+  {
+    "id": 57,
+    "question": "Which loop construct guarantees the body executes at least once?",
+    "options": ["for", "while", "do-while", "range-based for"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "cpp",
+    "topic": "Control Flow"
+  },
+  {
+    "id": 58,
+    "question": "On most common implementations, what is the size of a 'bool' in C++?",
+    "options": ["1 bit", "1 byte", "4 bytes", "8 bytes"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "cpp",
+    "topic": "Data Types"
+  },
+  {
+    "id": 59,
+    "question": "Which expression creates a std::vector<int> with 10 elements all initialized to 0?",
+    "options": [
+      "std::vector<int> v(10);",
+      "std::vector<int> v[10];",
+      "std::vector<int> v = {10};",
+      "std::vector<int> v.size(10);"
+    ],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "cpp",
+    "topic": "STL"
+  },
+  {
+    "id": 60,
+    "question": "What is the difference between std::vector::at(i) and operator[](i)?",
+    "options": [
+      "There is no difference",
+      "at() performs bounds checking and throws on out-of-range; operator[] does not",
+      "operator[] is faster only on const vectors",
+      "at() returns a copy; operator[] returns a reference"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "cpp",
+    "topic": "STL"
+  },
+  {
+    "id": 61,
+    "question": "Base has a 'virtual void foo()' and Derived overrides it. Calling basePtr->foo() where basePtr points to a Derived object will:",
+    "options": [
+      "Call Base::foo()",
+      "Call Derived::foo() via dynamic dispatch",
+      "Result in a compile error",
+      "Result in undefined behavior"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "cpp",
+    "topic": "OOP"
+  },
+  {
+    "id": 62,
+    "question": "Which header declares std::unique_ptr and std::shared_ptr?",
+    "options": ["<pointers>", "<smart_ptr>", "<memory>", "<utility>"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "cpp",
+    "topic": "Memory"
+  },
+  {
+    "id": 63,
+    "question": "In C++, what is the type of the literal 'a' (a single character in single quotes)?",
+    "options": ["std::string", "char", "int", "auto"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "cpp",
+    "topic": "Data Types"
+  },
+  {
+    "id": 64,
+    "question": "What does marking a single-argument constructor 'explicit' do?",
+    "options": [
+      "Makes it run faster",
+      "Prevents implicit conversion via that constructor",
+      "Makes the constructor public by default",
+      "Disables the constructor entirely"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "cpp",
+    "topic": "Classes"
+  },
+  {
+    "id": 65,
+    "question": "Which iterator category does std::vector::iterator belong to?",
+    "options": [
+      "Forward iterator",
+      "Bidirectional iterator",
+      "Random access iterator",
+      "Input iterator only"
+    ],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "cpp",
+    "topic": "Iterators"
+  },
+  {
+    "id": 66,
+    "question": "Given 'int* p = nullptr; *p = 5;', what happens at runtime?",
+    "options": [
+      "Compile error",
+      "p is set to 5",
+      "Undefined behavior (typically a segfault)",
+      "Allocates a new int and sets it to 5"
+    ],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "cpp",
+    "topic": "Pointers"
+  },
+  {
+    "id": 67,
+    "question": "What is the difference between std::move(x) and std::forward<T>(x)?",
+    "options": [
+      "They are aliases for the same function",
+      "std::move always casts to an rvalue; std::forward preserves the value category based on T (perfect forwarding)",
+      "std::move only works with std::string",
+      "std::forward is only used for inheritance hierarchies"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "cpp",
+    "topic": "Templates"
+  },
+  {
+    "id": 68,
+    "question": "What does the 'mutable' keyword allow when applied to a class member?",
+    "options": [
+      "Makes a const member function able to modify any field",
+      "Allows that specific member to be modified even from a const member function",
+      "Disables thread safety on that member",
+      "Allows copying a const object"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "cpp",
+    "topic": "Classes"
+  },
+  {
+    "id": 69,
+    "question": "What does the 'Rule of Five' refer to in modern C++?",
+    "options": [
+      "Every base class must declare five virtual functions",
+      "If you define any of destructor, copy ctor, copy assign, move ctor, or move assign, you should consider all five",
+      "A naming convention requiring identifiers to be at least five characters",
+      "A pattern requiring exactly five derived classes"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "cpp",
+    "topic": "OOP"
+  },
+  {
+    "id": 70,
+    "question": "What does std::async(std::launch::async, f) guarantee about how f runs?",
+    "options": [
+      "f runs synchronously in the calling thread",
+      "f is launched in a separate thread (asynchronously)",
+      "f runs only at program shutdown",
+      "f is offloaded to the GPU"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "cpp",
+    "topic": "Concurrency"
+  },
+  {
+    "id": 71,
+    "question": "Which fish is famous for its bright orange-and-white striped pattern?",
+    "options": ["Pufferfish", "Clownfish", "Mola Mola", "Pigfish"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Fish Facts"
+  },
+  {
+    "id": 72,
+    "question": "What organ do most fish use to breathe underwater?",
+    "options": ["Lungs", "Gills", "Skin", "Fins"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 73,
+    "question": "Which of these animals is a marine mammal, not a fish?",
+    "options": ["Tuna", "Dolphin", "Eel", "Anglerfish"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Classification"
+  },
+  {
+    "id": 74,
+    "question": "Roughly what percentage of Earth's surface is covered by oceans?",
+    "options": ["About 30%", "About 50%", "About 70%", "About 95%"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Ocean Facts"
+  },
+  {
+    "id": 75,
+    "question": "Which sea creature is famous for having eight arms?",
+    "options": ["Squid", "Octopus", "Lobster", "Starfish"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 76,
+    "question": "What gives most adult salmon flesh its pink/orange color?",
+    "options": [
+      "Genetic mutation",
+      "Carotenoid pigments from their diet",
+      "Salt absorption",
+      "Iron in the water"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Fish Facts"
+  },
+  {
+    "id": 77,
+    "question": "Which of these is a brightly-colored coral reef fish?",
+    "options": ["Cod", "Parrotfish", "Carp", "Pike"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Coral Reefs"
+  },
+  {
+    "id": 78,
+    "question": "Approximately how many species of fish have been described by science?",
+    "options": ["About 3,000", "About 10,000", "About 35,000", "Over 200,000"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 79,
+    "question": "Which sea creature is well-known for being able to regrow lost arms?",
+    "options": ["Goldfish", "Starfish", "Tuna", "Manta Ray"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 80,
+    "question": "The Great Barrier Reef is located off the coast of which country?",
+    "options": ["Brazil", "Mexico", "Australia", "Japan"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Coral Reefs"
+  },
+  {
+    "id": 81,
+    "question": "What kind of creature is a manta ray?",
+    "options": ["A fish (specifically a cartilaginous ray)", "A whale", "A coral", "A jellyfish"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Classification"
+  },
+  {
+    "id": 82,
+    "question": "What is the scientific study of fish called?",
+    "options": ["Ornithology", "Ichthyology", "Mycology", "Herpetology"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 83,
+    "question": "Lobsters, crabs, and shrimp all belong to which group?",
+    "options": ["Mollusks", "Crustaceans", "Echinoderms", "Cnidarians"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Crustaceans"
+  },
+  {
+    "id": 84,
+    "question": "Coral reefs are built primarily by which organisms?",
+    "options": [
+      "Algae",
+      "Tiny invertebrates called polyps",
+      "Schools of small fish",
+      "Wind and wave erosion of rock"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Coral Reefs"
+  },
+  {
+    "id": 85,
+    "question": "How does a swim bladder help a fish control its depth?",
+    "options": [
+      "It contains gas the fish can adjust to change buoyancy",
+      "It magnetically locks the fish in place",
+      "It absorbs salt water as ballast",
+      "It is filled with rocks for weight"
+    ],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 86,
+    "question": "Which sense, exceptionally well-developed in sharks, lets them detect blood from far away?",
+    "options": ["Sight", "Hearing", "Smell (chemoreception)", "Touch"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 87,
+    "question": "Bioluminescence in deep-sea creatures is most often produced by:",
+    "options": [
+      "Reflection of moonlight",
+      "A chemical reaction (typically luciferin and luciferase)",
+      "Hot water from hydrothermal vents",
+      "Static electricity from currents"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Deep Sea"
+  },
+  {
+    "id": 88,
+    "question": "What best describes a 'school' of fish?",
+    "options": [
+      "Always exactly 100 fish swimming together",
+      "A coordinated swimming group, often for safety or feeding",
+      "A group that only forms during the breeding season",
+      "Fish that always swim in straight lines"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 89,
+    "question": "What is salmon famously known for in their life cycle?",
+    "options": [
+      "Migrating from saltwater to freshwater to spawn",
+      "Hibernating in caves during winter",
+      "Spending their entire life in one tide pool",
+      "Reproducing asexually"
+    ],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 90,
+    "question": "Which of these fish primarily lives in freshwater rather than the ocean?",
+    "options": ["Tuna", "Swordfish", "Trout", "Marlin"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Classification"
+  },
+  {
+    "id": 91,
+    "question": "Which fish is famous for living symbiotically among the stinging tentacles of a sea anemone?",
+    "options": ["Pufferfish", "Clownfish", "Eel", "Stingray"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 92,
+    "question": "The Mariana Trench is famous for being:",
+    "options": [
+      "The longest river system on Earth",
+      "The deepest known point in Earth's oceans",
+      "The largest coral reef in the Pacific",
+      "The saltiest sea in the world"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Deep Sea"
+  },
+  {
+    "id": 93,
+    "question": "Which is the largest ocean on Earth by area?",
+    "options": ["Atlantic", "Indian", "Arctic", "Pacific"],
+    "correctAnswer": 3,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Ocean Facts"
+  },
+  {
+    "id": 94,
+    "question": "Which fish has a long, sword-like upper jaw it uses to slash through schools of prey?",
+    "options": ["Tuna", "Swordfish", "Mola Mola", "Eel"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "fish_trivia",
+    "topic": "Fish Facts"
+  },
+  {
+    "id": 95,
+    "question": "The 'ampullae of Lorenzini' are sensory organs on a shark that detect:",
+    "options": [
+      "Light intensity in dark water",
+      "Electric fields produced by nearby prey",
+      "Star positions for navigation",
+      "Trace ammonia at long distance"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 96,
+    "question": "Which species of octopus is highly venomous, with a bite that can be fatal to humans?",
+    "options": [
+      "Mimic Octopus",
+      "Blue-Ringed Octopus",
+      "Giant Pacific Octopus",
+      "Coconut Octopus"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 97,
+    "question": "The 'bathypelagic' zone of the ocean refers to depths approximately:",
+    "options": [
+      "0–200 meters (sunlit zone)",
+      "200–1,000 meters (twilight zone)",
+      "1,000–4,000 meters",
+      "Beyond 6,000 meters (in trenches)"
+    ],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "fish_trivia",
+    "topic": "Deep Sea"
+  },
+  {
+    "id": 98,
+    "question": "Cetaceans (whales, dolphins, porpoises) are believed to have evolved from:",
+    "options": [
+      "Ancient bony fish",
+      "Marine reptiles",
+      "Land-dwelling mammals",
+      "Flightless birds"
+    ],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 99,
+    "question": "Which fish is known for being able to breathe air with a primitive lung-like organ, surviving brief periods out of water?",
+    "options": ["Tuna", "Lungfish", "Mackerel", "Cod"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
+  },
+  {
+    "id": 100,
+    "question": "The 'Cambrian Explosion' refers to:",
+    "options": [
+      "A volcanic event that destroyed early coral reefs",
+      "A rapid diversification of marine life ~540 million years ago",
+      "A modern collapse of fishery populations",
+      "A type of underwater earthquake"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "fish_trivia",
+    "topic": "Marine Biology"
   }
 ]
