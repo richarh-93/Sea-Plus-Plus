@@ -433,6 +433,12 @@ export default function initGame() {
                 k.color(0, 0, 0),
             ]);
 
+            k.add([
+                k.text(`Worth ${q.reward} sand dollars`, { size: 30 }),
+                k.pos(baseX, baseY - 60),
+                k.color(0, 0, 0),
+            ]);
+
             q.options.forEach((option, optionIndex) => {
                 const btn = k.add([
                     k.text(`${optionIndex + 1}. ${option}`, {
@@ -499,6 +505,12 @@ export default function initGame() {
                     width: 1500,
                 }),
                 k.pos(baseX, baseY),
+                k.color(0, 0, 0),
+            ]);
+
+            k.add([
+                k.text(`Worth ${q.reward} sand dollars`, { size: 30 }),
+                k.pos(baseX, baseY - 60),
                 k.color(0, 0, 0),
             ]);
 
