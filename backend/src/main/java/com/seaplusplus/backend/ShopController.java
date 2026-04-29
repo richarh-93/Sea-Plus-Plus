@@ -18,7 +18,17 @@ public class ShopController {
     }
 
     @PostMapping("/api/fish/buy")
-    public ResponseEntity<Map<String, Object>> buyFish(@RequestBody Map<String, Object> body) {
+    public ResponseEntity<Map<String, Object>> buyFish(
+            @RequestHeader(value = "X-Player-Id", required = false) String playerId,
+            @RequestBody Map<String, Object> body) {
+
+        if (!PlayerIds.isValid(playerId)) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "success", false,
+                "error", "Missing or invalid X-Player-Id header"
+            ));
+        }
+
         Object idValue = body == null ? null : body.get("fishId");
         if (!(idValue instanceof Number)) {
             return ResponseEntity.badRequest().body(Map.of(
@@ -37,7 +47,7 @@ public class ShopController {
         }
         Map<String, Object> fish = fishOpt.get();
 
-        if (shopService.owns(fishId)) {
+        if (shopService.owns(playerId, fishId)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of(
                 "success", false,
                 "error", "You already own this fish"
@@ -45,17 +55,17 @@ public class ShopController {
         }
 
         int price = ((Number) fish.get("price")).intValue();
-        if (!shopService.canAfford(price)) {
+        if (!shopService.canAfford(playerId, price)) {
             return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).body(Map.of(
                 "success", false,
                 "error", "Not enough coins",
-                "coins", quizService.getCoins(),
+                "coins", quizService.getCoins(playerId),
                 "price", price
             ));
         }
 
         try {
-            shopService.purchase(fish);
+            shopService.purchase(playerId, fish);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
                 "success", false,
@@ -66,13 +76,19 @@ public class ShopController {
         return ResponseEntity.ok(Map.of(
             "success", true,
             "message", "Purchased " + fish.get("name"),
-            "coins", quizService.getCoins(),
-            "inventory", shopService.getInventory()
+            "coins", quizService.getCoins(playerId),
+            "inventory", shopService.getInventory(playerId)
         ));
     }
 
     @GetMapping("/api/inventory")
-    public ResponseEntity<List<Map<String, Object>>> getInventory() {
-        return ResponseEntity.ok(shopService.getInventory());
+    public ResponseEntity<?> getInventory(
+            @RequestHeader(value = "X-Player-Id", required = false) String playerId) {
+        if (!PlayerIds.isValid(playerId)) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Missing or invalid X-Player-Id header"
+            ));
+        }
+        return ResponseEntity.ok(shopService.getInventory(playerId));
     }
 }

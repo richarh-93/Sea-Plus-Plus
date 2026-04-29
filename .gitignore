@@ -12,6 +12,10 @@ backend/.mvn/wrapper/maven-wrapper.jar
 # ─── Game state (per-machine, not shared) ───
 save.json
 backend/save.json
+saves.json
+backend/saves.json
+saves.json.tmp
+backend/saves.json.tmp
 
 # ─── IDE / OS ───
 .vscode/

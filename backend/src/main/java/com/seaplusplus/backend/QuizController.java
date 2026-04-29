@@ -20,7 +20,16 @@ public class QuizController {
     }
 
     @PostMapping("/api/quiz/answer")
-    public ResponseEntity<Map<String, Object>> submitAnswer(@RequestBody Map<String, Object> body) {
+    public ResponseEntity<Map<String, Object>> submitAnswer(
+            @RequestHeader(value = "X-Player-Id", required = false) String playerId,
+            @RequestBody Map<String, Object> body) {
+
+        if (!PlayerIds.isValid(playerId)) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Missing or invalid X-Player-Id header"
+            ));
+        }
+
         Integer questionId = readInt(body, "questionId");
         Integer selectedAnswer = readInt(body, "selectedAnswer");
 
@@ -40,27 +49,33 @@ public class QuizController {
         int reward = correct ? quizService.rewardFor(questionId) : 0;
 
         if (correct) {
-            int newCoins = quizService.getCoins() + reward;
+            int newCoins = quizService.getCoins(playerId) + reward;
             try {
-                saveService.save(newCoins, shopService.getInventory());
+                saveService.save(playerId, newCoins, shopService.getInventory(playerId));
             } catch (IOException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
                     "error", "Failed to persist reward, no coins awarded: " + e.getMessage()
                 ));
             }
-            quizService.addCoins(reward);
+            quizService.addCoins(playerId, reward);
         }
 
         return ResponseEntity.ok(Map.of(
             "correct", correct,
             "reward", reward,
-            "coins", quizService.getCoins()
+            "coins", quizService.getCoins(playerId)
         ));
     }
 
     @GetMapping("/api/coins")
-    public ResponseEntity<Map<String, Integer>> getCoins() {
-        return ResponseEntity.ok(Map.of("coins", quizService.getCoins()));
+    public ResponseEntity<Map<String, Object>> getCoins(
+            @RequestHeader(value = "X-Player-Id", required = false) String playerId) {
+        if (!PlayerIds.isValid(playerId)) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Missing or invalid X-Player-Id header"
+            ));
+        }
+        return ResponseEntity.ok(Map.of("coins", quizService.getCoins(playerId)));
     }
 
     private static Integer readInt(Map<String, Object> body, String key) {

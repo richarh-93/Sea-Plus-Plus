@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class QuizService {
@@ -15,8 +16,8 @@ public class QuizService {
     private final int mediumReward;
     private final int hardReward;
 
-    private int coins;
     private final List<Map<String, Object>> questions;
+    private final Map<String, Integer> coinsByPlayer = new ConcurrentHashMap<>();
 
     public QuizService(
             SaveService saveService,
@@ -30,11 +31,11 @@ public class QuizService {
         this.mediumReward = mediumReward;
         this.hardReward = hardReward;
 
-        Map<String, Object> save = saveService.load();
-        Object savedCoins = save.get("coins");
-        this.coins = (savedCoins instanceof Number)
-                ? ((Number) savedCoins).intValue()
-                : startingCoins;
+        for (var entry : saveService.loadAll().entrySet()) {
+            if (entry.getValue().get("coins") instanceof Number n) {
+                coinsByPlayer.put(entry.getKey(), n.intValue());
+            }
+        }
 
         ObjectMapper mapper = new ObjectMapper();
         InputStream is = getClass().getResourceAsStream("/questions.json");
@@ -63,8 +64,8 @@ public class QuizService {
         return result;
     }
 
-    public int getCoins() {
-        return coins;
+    public int getCoins(String playerId) {
+        return coinsByPlayer.getOrDefault(playerId, startingCoins);
     }
 
     public List<Map<String, Object>> getQuestions() {
@@ -115,11 +116,11 @@ public class QuizService {
         }
     }
 
-    public void addCoins(int amount) {
-        coins += amount;
+    public void addCoins(String playerId, int amount) {
+        coinsByPlayer.compute(playerId, (k, v) -> (v == null ? startingCoins : v) + amount);
     }
 
-    public void resetCoins() {
-        coins = startingCoins;
+    public void resetCoins(String playerId) {
+        coinsByPlayer.put(playerId, startingCoins);
     }
 }

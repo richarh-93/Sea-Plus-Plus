@@ -20,14 +20,26 @@ public class SaveController {
     }
 
     @GetMapping("/api/save/exists")
-    public ResponseEntity<Map<String, Object>> saveExists() {
-        return ResponseEntity.ok(Map.of("exists", saveService.exists()));
+    public ResponseEntity<Map<String, Object>> saveExists(
+            @RequestHeader(value = "X-Player-Id", required = false) String playerId) {
+        if (!PlayerIds.isValid(playerId)) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Missing or invalid X-Player-Id header"
+            ));
+        }
+        return ResponseEntity.ok(Map.of("exists", saveService.exists(playerId)));
     }
 
     @PostMapping("/api/save")
-    public ResponseEntity<Map<String, Object>> save() {
+    public ResponseEntity<Map<String, Object>> save(
+            @RequestHeader(value = "X-Player-Id", required = false) String playerId) {
+        if (!PlayerIds.isValid(playerId)) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Missing or invalid X-Player-Id header"
+            ));
+        }
         try {
-            saveService.save(quizService.getCoins(), shopService.getInventory());
+            saveService.save(playerId, quizService.getCoins(playerId), shopService.getInventory(playerId));
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
                 "success", false,
@@ -36,8 +48,8 @@ public class SaveController {
         }
         return ResponseEntity.ok(Map.of(
             "success", true,
-            "coins", quizService.getCoins(),
-            "inventory", shopService.getInventory()
+            "coins", quizService.getCoins(playerId),
+            "inventory", shopService.getInventory(playerId)
         ));
     }
 }

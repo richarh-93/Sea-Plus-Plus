@@ -3,13 +3,14 @@ package com.seaplusplus.backend;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class ShopService {
 
     private final QuizService quizService;
     private final SaveService saveService;
-    private final List<Map<String, Object>> inventory;
+    private final Map<String, List<Map<String, Object>>> inventoryByPlayer = new ConcurrentHashMap<>();
 
     private final List<Map<String, Object>> fishCatalog = List.of(
         Map.of("id", 1, "name", "Angelfish", "price", 5, "imageUrl", "angel.png"),
@@ -28,12 +29,13 @@ public class ShopService {
         this.quizService = quizService;
         this.saveService = saveService;
 
-        Map<String, Object> data = saveService.load();
-        Object savedInv = data.get("inventory");
-        List<Map<String, Object>> saved = savedInv instanceof List
-            ? (List<Map<String, Object>>) savedInv
-            : new ArrayList<>();
-        this.inventory = new ArrayList<>(saved);
+        for (var entry : saveService.loadAll().entrySet()) {
+            Object savedInv = entry.getValue().get("inventory");
+            if (savedInv instanceof List<?>) {
+                List<Map<String, Object>> inv = new ArrayList<>((List<Map<String, Object>>) savedInv);
+                inventoryByPlayer.put(entry.getKey(), inv);
+            }
+        }
     }
 
     public List<Map<String, Object>> getCatalog() {
@@ -46,33 +48,34 @@ public class ShopService {
             .findFirst();
     }
 
-    public boolean owns(int fishId) {
-        return inventory.stream()
+    public boolean owns(String playerId, int fishId) {
+        return getInventory(playerId).stream()
             .anyMatch(f -> ((Number) f.get("id")).intValue() == fishId);
     }
 
-    public boolean canAfford(int price) {
-        return quizService.getCoins() >= price;
+    public boolean canAfford(String playerId, int price) {
+        return quizService.getCoins(playerId) >= price;
     }
 
-    public void purchase(Map<String, Object> fish) throws IOException {
+    public void purchase(String playerId, Map<String, Object> fish) throws IOException {
         int price = ((Number) fish.get("price")).intValue();
 
-        int newCoins = quizService.getCoins() - price;
-        List<Map<String, Object>> newInventory = new ArrayList<>(inventory);
+        int newCoins = quizService.getCoins(playerId) - price;
+        List<Map<String, Object>> currentInv = getInventory(playerId);
+        List<Map<String, Object>> newInventory = new ArrayList<>(currentInv);
         newInventory.add(fish);
 
-        saveService.save(newCoins, newInventory);
+        saveService.save(playerId, newCoins, newInventory);
 
-        quizService.addCoins(-price);
-        inventory.add(fish);
+        quizService.addCoins(playerId, -price);
+        inventoryByPlayer.computeIfAbsent(playerId, k -> new ArrayList<>()).add(fish);
     }
 
-    public List<Map<String, Object>> getInventory() {
-        return inventory;
+    public List<Map<String, Object>> getInventory(String playerId) {
+        return inventoryByPlayer.getOrDefault(playerId, new ArrayList<>());
     }
 
-    public void resetInventory() {
-        inventory.clear();
+    public void resetInventory(String playerId) {
+        inventoryByPlayer.remove(playerId);
     }
 }

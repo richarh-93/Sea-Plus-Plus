@@ -19,24 +19,31 @@ public class ResetController {
     }
 
     @PostMapping("/api/reset")
-    public ResponseEntity<Map<String, Object>> resetGame() {
-        quizService.resetCoins();
-        shopService.resetInventory();
+    public ResponseEntity<Map<String, Object>> resetGame(
+            @RequestHeader(value = "X-Player-Id", required = false) String playerId) {
+        if (!PlayerIds.isValid(playerId)) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Missing or invalid X-Player-Id header"
+            ));
+        }
 
-        if (!saveService.delete()) {
+        quizService.resetCoins(playerId);
+        shopService.resetInventory(playerId);
+
+        if (!saveService.delete(playerId)) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
                 "success", false,
-                "message", "Reset in-memory state, but failed to delete save file",
-                "coins", quizService.getCoins(),
-                "inventory", shopService.getInventory()
+                "message", "Reset in-memory state, but failed to update save file",
+                "coins", quizService.getCoins(playerId),
+                "inventory", shopService.getInventory(playerId)
             ));
         }
 
         return ResponseEntity.ok(Map.of(
             "success", true,
             "message", "Game reset",
-            "coins", quizService.getCoins(),
-            "inventory", shopService.getInventory()
+            "coins", quizService.getCoins(playerId),
+            "inventory", shopService.getInventory(playerId)
         ));
     }
 }
