@@ -627,12 +627,12 @@
   },
   {
     "id": 60,
-    "question": "What is the difference between std::vector::at(i) and operator[](i)?",
+    "question": "What's the difference between std::vector::at(i) and operator[](i)?",
     "options": [
       "There is no difference",
-      "at() performs bounds checking and throws on out-of-range; operator[] does not",
-      "operator[] is faster only on const vectors",
-      "at() returns a copy; operator[] returns a reference"
+      "at() does bounds checking; operator[] does not",
+      "operator[] is faster on const vectors",
+      "at() returns a copy; operator[] a reference"
     ],
     "correctAnswer": 1,
     "difficulty": "medium",
@@ -641,7 +641,7 @@
   },
   {
     "id": 61,
-    "question": "Base has a 'virtual void foo()' and Derived overrides it. Calling basePtr->foo() where basePtr points to a Derived object will:",
+    "question": "If Base::foo is virtual and Derived overrides it, basePtr->foo() on a Derived object will:",
     "options": [
       "Call Base::foo()",
       "Call Derived::foo() via dynamic dispatch",
@@ -718,9 +718,9 @@
     "question": "What is the difference between std::move(x) and std::forward<T>(x)?",
     "options": [
       "They are aliases for the same function",
-      "std::move always casts to an rvalue; std::forward preserves the value category based on T (perfect forwarding)",
+      "move casts to rvalue; forward preserves it",
       "std::move only works with std::string",
-      "std::forward is only used for inheritance hierarchies"
+      "forward is only for inheritance hierarchies"
     ],
     "correctAnswer": 1,
     "difficulty": "hard",
@@ -731,8 +731,8 @@
     "id": 68,
     "question": "What does the 'mutable' keyword allow when applied to a class member?",
     "options": [
-      "Makes a const member function able to modify any field",
-      "Allows that specific member to be modified even from a const member function",
+      "Lets a const member function modify any field",
+      "Lets it be modified in a const member function",
       "Disables thread safety on that member",
       "Allows copying a const object"
     ],
@@ -745,10 +745,10 @@
     "id": 69,
     "question": "What does the 'Rule of Five' refer to in modern C++?",
     "options": [
-      "Every base class must declare five virtual functions",
-      "If you define any of destructor, copy ctor, copy assign, move ctor, or move assign, you should consider all five",
-      "A naming convention requiring identifiers to be at least five characters",
-      "A pattern requiring exactly five derived classes"
+      "A base class must declare 5 virtual functions",
+      "Define all 5 special members if you define one",
+      "A naming rule requiring 5+ char identifiers",
+      "A pattern requiring 5 derived classes"
     ],
     "correctAnswer": 1,
     "difficulty": "hard",
@@ -1078,7 +1078,7 @@
   },
   {
     "id": 99,
-    "question": "Which fish is known for being able to breathe air with a primitive lung-like organ, surviving brief periods out of water?",
+    "question": "Which fish can breathe air using a primitive lung-like organ?",
     "options": ["Tuna", "Lungfish", "Mackerel", "Cod"],
     "correctAnswer": 1,
     "difficulty": "hard",
