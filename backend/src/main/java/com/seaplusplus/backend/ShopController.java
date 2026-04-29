@@ -9,6 +9,8 @@ import java.util.*;
 @RestController
 public class ShopController {
 
+    private static final int DENSMORAY_EEL_ID = 9;
+
     private final ShopService shopService;
     private final QuizService quizService;
 
@@ -51,6 +53,14 @@ public class ShopController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of(
                 "success", false,
                 "error", "You already own this fish"
+            ));
+        }
+
+        if (fishId == DENSMORAY_EEL_ID && !shopService.hasAllOtherFish(playerId, fishId)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of(
+                "success", false,
+                "error", "locked",
+                "message", "You must collect every other fish before Professor Densmoray Eel will return."
             ));
         }
 

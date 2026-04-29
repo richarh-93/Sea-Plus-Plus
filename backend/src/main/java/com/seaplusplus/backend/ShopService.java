@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Service
 public class ShopService {
@@ -51,6 +52,16 @@ public class ShopService {
     public boolean owns(String playerId, int fishId) {
         return getInventory(playerId).stream()
             .anyMatch(f -> ((Number) f.get("id")).intValue() == fishId);
+    }
+
+    public boolean hasAllOtherFish(String playerId, int targetFishId) {
+        Set<Integer> ownedIds = getInventory(playerId).stream()
+            .map(f -> ((Number) f.get("id")).intValue())
+            .collect(Collectors.toSet());
+        return fishCatalog.stream()
+            .map(f -> ((Number) f.get("id")).intValue())
+            .filter(id -> id != targetFishId)
+            .allMatch(ownedIds::contains);
     }
 
     public boolean canAfford(String playerId, int price) {
