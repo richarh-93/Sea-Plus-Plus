@@ -10,7 +10,6 @@ import {
     buyFish,
     getInventory,
     resetGame,
-    addCoins,
 } from "./api";
 
 export default function initGame() {
@@ -386,6 +385,10 @@ export default function initGame() {
                                 }
                             } else {
                                 priceLabel.color = k.rgb(255, 0, 0);
+
+                                if (result?.error === "locked") {
+                                    setMessage(result.message, k.rgb(141, 5, 5));
+                                }
 
                                 k.wait(1, () => {
                                     priceLabel.color = k.rgb(0, 0, 0);
