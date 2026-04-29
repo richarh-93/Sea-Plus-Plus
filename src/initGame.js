@@ -1,6 +1,7 @@
 import initKaplay from "./kaplayCtx";
 import { loadFishSprites } from "./loadFishSprites";
 import { creditsText } from "./credits";
+import {tutorialText } from "./tutorial";
 import {
     getCoins,
     getFishCatalog,
@@ -585,7 +586,7 @@ export default function initGame() {
                     state.questions = await getQuestions("cpp");
                     state.altQuestions = await getQuestions("fish_trivia");
 
-                    k.go("main");
+                    k.go("tutorial");
                 } catch (err) {
                     console.error("New game failed:", err);
                     setMessage("Could not start new game", k.rgb(255, 0, 0));
@@ -610,6 +611,35 @@ export default function initGame() {
             makeButton("creditsButton", k.width() / 2, 960, () => {
                 k.go("credits");
             },7);
+        });
+
+        k.scene("tutorial", () => {
+            addFullBackground("questionBg");
+
+            makeButton("backButton", 200, 191, () => {
+                k.go("main");
+            });
+
+            k.add([
+                k.text("Sea++", { size: 100 }),
+                k.pos(k.width() / 2, 190),
+                k.anchor("center"),
+                k.color(0, 0, 0),
+            ]);
+
+            const paragraphY = k.height() / 2 + 20;
+
+            k.add([
+                k.text(tutorialText[0].text, {
+                    size: 50,
+                    width: 1500,
+                    lineSpacing: 15,
+                    align: "center"
+                }),
+                k.pos(k.width() / 2, paragraphY),
+                k.anchor("center"),
+                k.color(0, 0, 0),
+            ]);
         });
 
         k.scene("credits", () => {
