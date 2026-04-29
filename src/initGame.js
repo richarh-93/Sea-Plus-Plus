@@ -658,18 +658,18 @@ export default function initGame() {
             });
 
             k.add([
-                k.text("Sea++", { size: 100 }),
+                k.text("Sea++", { size: 60 }),
                 k.pos(k.width() / 2, 190),
                 k.anchor("center"),
                 k.color(0, 0, 0),
             ]);
 
-            const paragraphY = k.height() / 2 + 100;
+            const paragraphY = 520;
 
             k.add([
                 k.text(tutorialText[0].text, {
-                    size: 50,
-                    width: 1500,
+                    size: 40,
+                    width: 1300,
                     lineSpacing: 15,
                     align: "center"
                 }),
