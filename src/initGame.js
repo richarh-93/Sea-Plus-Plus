@@ -630,7 +630,7 @@ export default function initGame() {
                 k.color(0, 0, 0),
             ]);
 
-            const paragraphY = k.height() / 2 + 20;
+            const paragraphY = k.height() / 2 + 100;
 
             k.add([
                 k.text(tutorialText[0].text, {
