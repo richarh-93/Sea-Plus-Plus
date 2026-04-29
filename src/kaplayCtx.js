@@ -7,7 +7,7 @@ export default function initKaplay()
         height: 1136, //video says 1080
         letterbox: true,
         global: false, //so that we cant call kaplay globally
-        debug: true, //put back to false later
+        debug: false, //was true for development
         debugKey: "k",
         canvas: document.getElementById("game"),
         pixelDensity: devicePixelRatio, //makes it sharp on any screen

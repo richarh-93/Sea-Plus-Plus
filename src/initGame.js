@@ -446,16 +446,20 @@ export default function initGame() {
                 k.scale(2),
             ]);
 
+            let nextY = baseY + 120;
+            const gap = 20;
             q.options.forEach((option, optionIndex) => {
                 const btn = k.add([
                     k.text(`${optionIndex + 1}. ${option}`, {
                         size: 40,
                         width: 1300,
                     }),
-                    k.pos(baseX + 40, baseY + 120 + optionIndex * 80),
+                    k.pos(baseX + 40, nextY),
                     k.area(),
                     k.color(0, 0, 0),
                 ]);
+
+                nextY += btn.height + gap;
 
                 btn.onHover(() => {
                     k.setCursor("pointer");
@@ -528,16 +532,20 @@ export default function initGame() {
                 k.scale(2),
             ]);
 
+            let nextY = baseY + 120;
+            const gap = 20;
             q.options.forEach((option, optionIndex) => {
                 const btn = k.add([
                     k.text(`${optionIndex + 1}. ${option}`, {
                         size: 40,
                         width: 1300,
                     }),
-                    k.pos(baseX + 40, baseY + 120 + optionIndex * 80),
+                    k.pos(baseX + 40, nextY),
                     k.area(),
                     k.color(0, 0, 0),
                 ]);
+
+                nextY += btn.height + gap;
 
                 btn.onHover(() => {
                     k.setCursor("pointer");
@@ -675,7 +683,7 @@ export default function initGame() {
             addFullBackground("questionBg");
 
             makeButton("backButton", 200, 191, () => {
-                k.go("main");
+                k.go("start");
             });
 
             let startY = 160;
