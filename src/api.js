@@ -1,18 +1,4 @@
 const API_BASE = "";
-const PLAYER_ID_KEY = "spp.playerId";
-
-function getOrCreatePlayerId() {
-    let id = localStorage.getItem(PLAYER_ID_KEY);
-    if (!id) {
-        id = crypto.randomUUID();
-        localStorage.setItem(PLAYER_ID_KEY, id);
-    }
-    return id;
-}
-
-function playerIdHeaders() {
-    return { "X-Player-Id": getOrCreatePlayerId() };
-}
 
 async function handleJson(res) {
     if (!res.ok) {
@@ -22,9 +8,7 @@ async function handleJson(res) {
 }
 
 export async function getCoins() {
-    const res = await fetch(`${API_BASE}/api/coins`, {
-        headers: playerIdHeaders(),
-    });
+    const res = await fetch(`${API_BASE}/api/coins`);
     return handleJson(res);
 }
 
@@ -52,7 +36,7 @@ export async function getQuestions(category) {
 export async function submitAnswer(questionId, selectedAnswer) {
     const res = await fetch(`${API_BASE}/api/quiz/answer`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...playerIdHeaders() },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId, selectedAnswer }),
     });
     return handleJson(res);
@@ -61,25 +45,32 @@ export async function submitAnswer(questionId, selectedAnswer) {
 export async function buyFish(fishId) {
     const res = await fetch(`${API_BASE}/api/fish/buy`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...playerIdHeaders() },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fishId }),
     });
     return handleJson(res);
 }
 
 export async function getInventory() {
-    const res = await fetch(`${API_BASE}/api/inventory`, {
-        headers: playerIdHeaders(),
-    });
+    const res = await fetch(`${API_BASE}/api/inventory`);
     return handleJson(res);
 }
 
 export async function resetGame() {
     const res = await fetch(`${API_BASE}/api/reset`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...playerIdHeaders() },
+        headers: { "Content-Type": "application/json" },
     });
     return res.json();
+}
+
+export async function addCoins(amount) {
+    const res = await fetch(`${API_BASE}/api/coins/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount }),
+    });
+    return handleJson(res);
 }
 
 function shuffleArray(array) {

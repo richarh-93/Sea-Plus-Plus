@@ -10,6 +10,7 @@ import {
     buyFish,
     getInventory,
     resetGame,
+    addCoins,
 } from "./api";
 
 export default function initGame() {
