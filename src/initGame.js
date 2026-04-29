@@ -181,7 +181,12 @@ export default function initGame() {
 
         function addMessageUI() {
             state.messageLabel = k.add([
-                k.text("", { size: 40 }),
+                k.text("", {
+                    size: 30,
+                    width: 1400,
+                    lineSpacing: 8,
+                    align: "center",
+                }),
                 k.pos(k.width() / 2, 900),
                 k.anchor("center"),
                 k.fixed(),
